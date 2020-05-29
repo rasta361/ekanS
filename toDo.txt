@@ -1,0 +1,2 @@
+figure out snake movement - DONE
+get gameLoop timing working correctly
