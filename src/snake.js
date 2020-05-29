@@ -54,12 +54,9 @@ export default class Snake {
     draw(context) {
         context.fillStyle='#459f30';
         context.fillRect(this.position.x, this.position.y, this.width, this.height);
-        
     }
 
     update(deltaTime) {
-
-
         this.position.x += this.speed.x;
         this.position.y += this.speed.y;
     }

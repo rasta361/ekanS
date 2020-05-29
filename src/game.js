@@ -15,7 +15,7 @@ export default class Game {
         new InputHandler(this, this.snake);
     }
 
-    start() {
+    start(context) {
         this.gameObjects = [this.snake];
     }
 
@@ -24,7 +24,7 @@ export default class Game {
     }
 
     draw(context) {
-        this.drawGrid(context);
+        //this.drawGrid(context);
         this.gameObjects.forEach(object => object.draw(context));
     }
 

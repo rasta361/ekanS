@@ -1,4 +1,5 @@
 import Game from './game.js';
+import {drawFPS} from './debug.js';
 
 let canvas = document.getElementById('gameScreen');
 let context = canvas.getContext('2d');
@@ -19,6 +20,7 @@ function gameLoop(timestamp) {
 
     game.update(deltaTime);
     game.draw(context);
+    drawFPS(context, deltaTime);
     
     requestAnimationFrame(gameLoop);
 }
