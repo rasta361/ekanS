@@ -3,10 +3,15 @@ export default class Snake {
         this.width = game.gridSize;
         this.height = game.gridSize;
 
-        this.maxSpeed = 5;
+        this.maxSpeed = 10;
         this.speed = {x: 0, y: 0};
 
         this.position = {x: game.gameWidth / 2, y: game.gameHeight / 2};
+
+        // variables needed to control fps
+        this.fpsInterval = 1000 / this.maxSpeed;
+        this.then = Date.now();
+        this.startTime = this.then;
     }
 
     moveLeft(){
@@ -47,8 +52,7 @@ export default class Snake {
     }
 
     stop(){
-        this.speed.x = 0;
-        this.speed.y = 0;
+        this.speed = {x: 0, y:0};
     }
 
     draw(context) {
@@ -57,7 +61,18 @@ export default class Snake {
     }
 
     update(deltaTime) {
-        this.position.x += this.speed.x;
-        this.position.y += this.speed.y;
+        // calc elapsed time since last loop
+        this.now = Date.now();
+        this.elapsed = this.now - this.then;
+
+        // if enough time has elapsed, draw the next frame
+        if (this.elapsed > this.fpsInterval) {
+            // Get ready for next frame by setting then=now, but...
+            // Also, adjust for fpsInterval not being multiple of 16.67
+            this.then = this.now - (this.elapsed % this.fpsInterval);
+            
+            this.position.x += this.speed.x;
+            this.position.y += this.speed.y;
+        }
     }
 }
