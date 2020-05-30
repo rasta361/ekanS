@@ -7,6 +7,7 @@ let context = canvas.getContext('2d');
 const GAME_WIDTH = 800;
 const GAME_HEIGHT = 600;
 
+// variables needed to control fps
 let fps, fpsInterval, startTime, now, then, elapsed;
 let lastTime = 0;
 
@@ -14,6 +15,9 @@ let game = new Game(GAME_WIDTH, GAME_HEIGHT);
 game.start();
 
 startLoop(10);
+
+
+////// FUNCTIONS //////
 
 function startLoop(fps) {
     fpsInterval = 1000 / fps;
@@ -44,7 +48,7 @@ function gameLoop(timestamp) {
         context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
         game.update(deltaTime);
         game.draw(context);
-        drawFPS(context, deltaTime);
+        drawFPS(context, elapsed);
     }
     
 }
