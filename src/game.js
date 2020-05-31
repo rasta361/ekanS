@@ -1,4 +1,5 @@
 import Snake from './snake.js';
+import Apple from './apple.js';
 import InputHandler from './input.js';
 
 const GAMESTATE = {
@@ -18,14 +19,15 @@ export default class Game {
         this.gameObjects = [];
         this.lives = 1;
         this.snake = new Snake(this);
+        this.apple = new Apple(this);
         new InputHandler(this, this.snake);
     }
 
     start() {
         if (this.gamestate !== GAMESTATE.MENU) return;
 
-        this.gameObjects = [this.snake];
-
+        this.apple.reset();
+        this.gameObjects = [this.snake, this.apple];
         this.gamestate = GAMESTATE.RUNNING;
     }
 
@@ -84,5 +86,18 @@ export default class Game {
     togglePause() {
         if (this.gamestate === GAMESTATE.PAUSED) this.gamestate = GAMESTATE.RUNNING;
         else this.gamestate = GAMESTATE.PAUSED;
+    }
+
+    getRandomPos(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        this.temp1 = Math.floor(Math.random() * (max - min)) + min;
+
+        if (Math.round(this.temp1 / 10) === max / 10) Math.floor(this.temp1 / 10)
+        else this.temp2 = Math.round(this.temp1 / 10);
+
+        if (this.temp2 % 2 !== 0) this.getRandomPos(min, max);
+
+        return this.temp2 * 10;
     }
 }

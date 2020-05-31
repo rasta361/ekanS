@@ -20,6 +20,7 @@ function gameLoop(timestamp) {
     game.update(deltaTime);
     game.draw(context);
     drawFPS(context, deltaTime);
+    //drawGrid(context, game);
 
     requestAnimationFrame(gameLoop);
 }
