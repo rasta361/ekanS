@@ -12,8 +12,8 @@ export default class Apple {
 
     reset() {
         this.position = {
-            x: this.game.getRandomPos(this.game.gridSize, this.game.gameWidth),
-            y: this.game.getRandomPos(this.game.gridSize, this.game.gameHeight)
+            x: this.game.getRandomPos(0, this.game.gameWidth),
+            y: this.game.getRandomPos(0, this.game.gameHeight)
         };
     }
 
@@ -23,11 +23,10 @@ export default class Apple {
     }
 
     update() {
-        console.log('apple pos: ' + this.position.x + ' ' + this.position.y);
-
         // collision detection
         if (detectCollision(this.game.snake, this)) {
             this.game.snake.length++;
+            this.game.points++;
             this.reset();
         }
 

@@ -11,3 +11,10 @@ export function detectTailCollision(snake, gameObject) {
             return true;
     }
 }
+
+export function detectWallCollision(game, gameObject) {
+    if (gameObject.position.x >= game.gameWidth || gameObject.position.x < 0 ||
+        gameObject.position.y >= game.gameHeight || gameObject.position.y < 0) {
+            return true;
+        }
+}

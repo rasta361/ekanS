@@ -25,3 +25,13 @@ export function drawGrid(context, game) {
     context.closePath();
     context.stroke();
 }
+
+export function logData(game) {
+    console.clear();
+    console.log('gridSize: ' + game.gridSize);
+    console.log('position x: ' + game.snake.position.x + ' position y: ' + game.snake.position.y);
+
+    console.log('tails: ' + game.snake.tails.length);
+
+    console.log('apple pos: ' + game.apple.position.x + ' ' + game.apple.position.y);
+}

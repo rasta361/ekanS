@@ -1,22 +1,22 @@
-import { detectTailCollision } from "./collisionDetection.js";
+import { detectTailCollision, detectWallCollision } from "./collisionDetection.js";
 
 export default class Snake {
     constructor(game) {
         this.game = game;
         this.width = game.gridSize;
         this.height = game.gridSize;
-        this.length = 2;
 
         this.maxSpeed = 10;
-        this.speed = {x: this.width, y: 0};
-
-        this.position = {x: game.gameWidth / 2, y: game.gameHeight / 2};
-        this.tails = [];
-
-        // variables needed to control snake speed
         this.fpsInterval = 1000 / this.maxSpeed;
         this.then = Date.now();
         this.startTime = this.then;
+    }
+
+    reset() {
+        this.position = {x: this.game.gridSize, y: this.game.gameHeight - this.game.gridSize};
+        this.speed = {x: this.width, y: 0};
+        this.length = 2;
+        this.tails = [];
     }
 
     moveLeft(){
@@ -47,10 +47,6 @@ export default class Snake {
         this.speed.x = 0;
     }
 
-    stop(){
-        this.speed = {x: 0, y:0};
-    }
-
     draw(context) {
         context.fillStyle='#459f30';
         context.fillRect(this.position.x, this.position.y, this.width, this.height);
@@ -64,10 +60,6 @@ export default class Snake {
         // calc elapsed time since last loop
         this.now = Date.now();
         this.elapsed = this.now - this.then;
-
-        console.clear();
-        console.log('position x: ' + this.position.x + ' position y: ' + this.position.y);
-        console.log('tails: ' + this.tails.length);
 
         // if enough time has elapsed, update the next frame
         if (this.elapsed > this.fpsInterval) {
@@ -94,9 +86,12 @@ export default class Snake {
             this.position.x += this.speed.x;
             this.position.y += this.speed.y;
         }
-        
+
         if (detectTailCollision(this, this)) {
-            console.log('u ded');
+            this.game.lives--;
+        }
+
+        if (detectWallCollision(this.game, this)) {
             this.game.lives--;
         }
     }
