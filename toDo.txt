@@ -1,5 +1,0 @@
-- figure out snake movement - DONE
-- get gameLoop timing working correctly - DONE
-- move the gameLoop timing logic to the snake.update() to only effect the snake and have the rest of the game rum at 60 fps
-- give snake a tail
-- add apple
