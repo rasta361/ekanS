@@ -1,11 +1,12 @@
 export default class Snake {
     constructor(game) {
+        this.game = game;
         this.width = game.gridSize;
         this.height = game.gridSize;
         this.length = 5;
 
         this.maxSpeed = 5;
-        this.speed = {x: 0, y: 0};
+        this.speed = {x: this.width, y: 0};
 
         this.position = {x: game.gameWidth / 2, y: game.gameHeight / 2};
         this.tails = [];
@@ -90,6 +91,13 @@ export default class Snake {
             // update head position
             this.position.x += this.speed.x;
             this.position.y += this.speed.y;
+        }
+
+        for(let i = 0; i < this.tails.length; i++) {
+            if (this.position.x === this.tails[i][0] && this.position.y === this.tails[i][1]) {
+                console.log('u ded');
+                this.game.lives--;
+            }
         }
     }
 }

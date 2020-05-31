@@ -10,7 +10,6 @@ const GAME_HEIGHT = 600;
 let lastTime = 0;
 
 let game = new Game(GAME_WIDTH, GAME_HEIGHT);
-game.start();
 
 function gameLoop(timestamp) {
     let deltaTime = timestamp - lastTime;

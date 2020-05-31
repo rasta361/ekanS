@@ -4,6 +4,7 @@ export function drawFPS(context, deltaTime) {
 
     // draw number to screen
     context.fillStyle='white';
+    context.textAlign = 'left';
     context.font='10px sans-serif';
     context.fillText('FPS: ' + fps, 10, 30);
 }
