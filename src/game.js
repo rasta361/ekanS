@@ -1,5 +1,6 @@
 import Snake from './snake.js';
 import Apple from './apple.js';
+import GroundTile from './groundTile.js'
 import InputHandler from './input.js';
 
 const GAMESTATE = {
@@ -17,14 +18,25 @@ export default class Game {
         this.gridSize = Math.round(((gameWidth + gameHeight) / 40) / 10) * 10;
         this.gamestate = GAMESTATE.MENU;
         this.gameObjects = [];
+        this.groundTiles = [];
         
         this.snake = new Snake(this);
+        this.snake.reset();
         this.apple = new Apple(this);
+        //this.groundTile = new GroundTile(this, {x: 40, y: 40});
         new InputHandler(this, this.snake);
     }
 
     start() {
         if (this.gamestate !== GAMESTATE.MENU && this.gamestate !== GAMESTATE.GAMEOVER) return;
+
+        //let groundTiles = [];
+        for(let i=0; i<this.gameHeight/this.gridSize; i++) {    
+            for(let j=0; j<this.gameWidth/this.gridSize; j++) {
+                this.groundTiles.push(new GroundTile(this, {x: j * 40, y: i * 40}));
+            }
+        }
+        //this.drawGround();
 
         this.lives = 1;
         this.points = 0;
@@ -101,6 +113,10 @@ export default class Game {
 			context.textAlign = 'center';
 			context.fillText('Press SPACEBAR To Try Again', this.gameWidth / 2, this.gameHeight / 1.7);
 		}
+    }
+
+    drawGround(context) {
+        this.groundTiles.forEach(GroundTile => GroundTile.draw(context));
     }
 
     togglePause() {

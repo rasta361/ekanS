@@ -2,45 +2,59 @@
 
 * {
 
-    box-sizing: border-box;
-    margin:0;
-    padding:0;
-  
-  }
-  
-  html, body {
-  
-    height:100%;
-    width:100%;
-  
-  }
-  
-  body {
-  
-    align-content:space-around;
-    background-color:#202830;
-    color:#ffffff;
-    display:grid;
-    justify-items:center;
-  
-  }
-  
-  h1 {
-  
-    word-wrap:break-word;
-  
-  }
-  
-  canvas {
-  
-    cursor:none;
-  
-  }
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
 
-  #gameScreen {
-      border: 1px solid black;
-  }
+}
+  
+html, body {
 
-  img {
-      display: none;
-  }
+  height:100%;
+  width:100%;
+
+}
+
+body {
+
+  align-content:space-around;
+  background-color:#202830;
+  color:#ffffff;
+  display:grid;
+  justify-items:center;
+
+}
+
+h1 {
+
+  word-wrap:break-word;
+
+}
+
+canvas {
+
+  cursor:none;
+
+}
+
+#stage {
+  width: 800px;
+  height: 600px;
+  position: relative;
+}
+
+canvas {position: absolute;}
+
+#gameScreen {
+    border: 1px solid black;
+    z-index: 2;
+}
+
+#ground-layer {
+  z-index: 1;
+}
+
+img {
+    display: none;
+}
+

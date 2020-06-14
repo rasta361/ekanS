@@ -14,6 +14,7 @@ let lastTime = 0;
 
 let game = new Game(GAME_WIDTH, GAME_HEIGHT);
 
+
 function gameLoop(timestamp) {
     let deltaTime = timestamp - lastTime;
     lastTime = timestamp;
@@ -21,8 +22,9 @@ function gameLoop(timestamp) {
     context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     game.update(deltaTime);
     game.draw(context);
+    game.drawGround(document.getElementById('ground-layer').getContext('2d'));
     drawFPS(context, deltaTime);
-    //logData(game);
+    logData(game);
     //drawGrid(context, game);
 
     requestAnimationFrame(gameLoop);
