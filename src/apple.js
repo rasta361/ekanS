@@ -6,6 +6,9 @@ export default class Apple {
         this.width = game.gridSize;
         this.height = game.gridSize;
 
+        this.image = new Image();
+        this.image.src = '/assets/art/apple.png'
+
         this.position = {x: 0, y: 0};
         
     }
@@ -18,8 +21,10 @@ export default class Apple {
     }
 
     draw(context) {
-        context.fillStyle='#9f2020';
-        context.fillRect(this.position.x, this.position.y, this.width, this.height);
+        // context.fillStyle='#9f2020';
+        // context.fillRect(this.position.x, this.position.y, this.width, this.height);
+        context.drawImage(this.image, this.position.x, this.position.y, this.game.gridSize, this.game.gridSize);
+        
     }
 
     update() {
