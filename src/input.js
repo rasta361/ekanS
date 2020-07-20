@@ -29,25 +29,5 @@ export default class InputHandler {
                     break;
             }
         });
-
-        document.addEventListener('keyup', event => {
-            switch (event.keyCode) {
-                case 37:
-                    //if (snake.speed.x < 0) snake.stop();
-                    break;
-
-                case 39:
-                    //if (snake.speed.x > 0) snake.stop();
-                    break;
-
-                case 38:
-                    //if (snake.speed.y < 0) snake.stop();
-                    break;
-
-                case 40:
-                    //if (snake.speed.y > 0) snake.stop();
-                    break;
-        }
-        });
     }
 }

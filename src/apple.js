@@ -7,7 +7,7 @@ export default class Apple {
         this.height = game.gridSize;
 
         this.image = new Image();
-        this.image.src = '/assets/art/apple.png'
+        this.image.src = '/assets/images/apple.png'
 
         this.position = {x: 0, y: 0};
         
@@ -37,6 +37,4 @@ export default class Apple {
 
         if (detectTailCollision(this.game.snake, this)) this.reset();
     }
-
-    
 }

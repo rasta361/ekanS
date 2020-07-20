@@ -23,20 +23,17 @@ export default class Game {
         this.snake = new Snake(this);
         this.snake.reset();
         this.apple = new Apple(this);
-        //this.groundTile = new GroundTile(this, {x: 40, y: 40});
         new InputHandler(this, this.snake);
     }
 
     start() {
         if (this.gamestate !== GAMESTATE.MENU && this.gamestate !== GAMESTATE.GAMEOVER) return;
 
-        //let groundTiles = [];
         for(let i=0; i<this.gameHeight/this.gridSize; i++) {    
             for(let j=0; j<this.gameWidth/this.gridSize; j++) {
                 this.groundTiles.push(new GroundTile(this, {x: j * 40, y: i * 40}));
             }
         }
-        //this.drawGround();
 
         this.lives = 1;
         this.points = 0;

@@ -1,7 +1,7 @@
 export default class GroundTile {
     constructor(game, position) {
         this.image = new Image();
-        this.image.src = "assets/art/grassTileTest.png"
+        this.image.src = "assets/images/grassTileTest.png"
 
         this.game = game;
 
@@ -15,5 +15,4 @@ export default class GroundTile {
     draw(context) {
         context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
     }
-
 }
